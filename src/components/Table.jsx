@@ -34,7 +34,7 @@ const Table = ({ data }) => {
                                     </td>
                                 );
                             } else if (head === "No") {
-                                return <td key={index}>{item["id"]}</td>;
+                                return <td key={index}>{index + 1}</td>;
                             } else {
                                 return <td key={index}>{item[head]}</td>;
                             }
