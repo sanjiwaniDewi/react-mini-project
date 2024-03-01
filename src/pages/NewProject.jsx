@@ -72,6 +72,7 @@ const NewProject = () => {
         setDetail("");
         setDeadline("");
         setTeam("Team");
+        setMessage("");
     };
 
     useEffect(() => {
