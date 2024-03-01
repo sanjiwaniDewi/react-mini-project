@@ -5,6 +5,7 @@ import Project from "../pages/Project";
 import Team from "../pages/Team";
 import ProtectedRoute from "../routes/ProtectedRoute";
 import LeaderDetail from "../pages/LeaderDetail";
+import NewProject from "../pages/NewProject";
 
 const routeslist = [
     {
@@ -31,6 +32,7 @@ const routeslist = [
                 <Project />
             </ProtectedRoute>
         ),
+        children: [{ path: "new-project", element: <NewProject /> }],
     },
     {
         path: "/team",
