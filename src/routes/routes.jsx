@@ -27,12 +27,25 @@ const routeslist = [
     },
     {
         path: "/project",
-        element: (
-            <ProtectedRoute>
-                <Project />
-            </ProtectedRoute>
-        ),
-        children: [{ path: "new-project", element: <NewProject /> }],
+
+        children: [
+            {
+                element: (
+                    <ProtectedRoute>
+                        <Project />
+                    </ProtectedRoute>
+                ),
+                index: true,
+            },
+            {
+                path: "new-project",
+                element: (
+                    <ProtectedRoute>
+                        <NewProject />{" "}
+                    </ProtectedRoute>
+                ),
+            },
+        ],
     },
     {
         path: "/team",
@@ -46,6 +59,15 @@ const routeslist = [
         path: "/leader-detail/:id",
         element: <LeaderDetail />,
     },
+
+    // {
+    //     path: "/new-project",
+    //     element: (
+    //         <ProtectedRoute>
+    //             <NewProject />{" "}
+    //         </ProtectedRoute>
+    //     ),
+    // },
 ];
 
 export default routeslist;
