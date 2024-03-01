@@ -20,8 +20,8 @@ const Table = ({ data }) => {
                 </tr>
             </thead>
             <tbody>
-                {data.map((item, index) => (
-                    <tr key={index}>
+                {data.map((item, indexs) => (
+                    <tr key={indexs}>
                         {header.map((head, index) => {
                             if (index === 1) {
                                 return (
@@ -34,7 +34,11 @@ const Table = ({ data }) => {
                                     </td>
                                 );
                             } else if (head === "No") {
-                                return <td key={index}>{index + 1}</td>;
+                                if (typeof item["id"] === "number") {
+                                    return <td key={index}>{item["id"]}</td>;
+                                } else {
+                                    return <td key={index}>{indexs + 1}</td>;
+                                }
                             } else {
                                 return <td key={index}>{item[head]}</td>;
                             }
