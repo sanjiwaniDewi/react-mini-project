@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import projects from "../data/project";
 import { Link } from "react-router-dom";
 
@@ -60,25 +60,42 @@ const NewProject = () => {
         }
     };
 
-    if (
-        Object.keys(project).length !== 0 &&
-        projects.filter((item) => item.id === project.id).length === 0
-    ) {
-        projects.push(project);
-    }
+    const handleProjectData = () => {
+        if (
+            Object.keys(project).length !== 0 &&
+            projects.filter((item) => item.id === project.id).length === 0
+        ) {
+            projects.push(project);
+        }
+
+        setProname("");
+        setDetail("");
+        setDeadline("");
+        setTeam("Team");
+    };
+
+    useEffect(() => {
+        handleProjectData();
+    }, [project]);
 
     return (
         <>
-            <Link to="/">Home</Link>
+            <Link to="/project">Project</Link>
             <h1>project page</h1>
             <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
                 <input
                     type="text"
                     placeholder="project name"
                     onChange={handleProname}
+                    value={proname}
                 />
                 {!proname && message ? <p>{message}</p> : ""}
-                <select name="team" id="team" onChange={handleTeam}>
+                <select
+                    name="team"
+                    id="team"
+                    onChange={handleTeam}
+                    value={team}
+                >
                     <option>Team</option>
                     <option value="Ayam">Ayam</option>
                     <option value="Kambing">Kambing</option>
@@ -86,7 +103,7 @@ const NewProject = () => {
                     <option value="Sapi">Sapi</option>
                 </select>
                 {(!team || team === "Team") && message ? <p>{message}</p> : ""}
-                <input type="date" onChange={handleDeadline} />
+                <input type="date" onChange={handleDeadline} value={deadline} />
                 {!deadline && message ? <p>{message}</p> : ""}
                 <textarea
                     name="detail"
@@ -95,6 +112,7 @@ const NewProject = () => {
                     rows="10"
                     placeholder="Description"
                     onChange={handleDetail}
+                    value={detail}
                 ></textarea>
                 {!detail && message ? <p>{message}</p> : ""}
                 <input type="file" />
